@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 import { ChartLine, Clock, ListOrdered } from 'lucide-react';
@@ -15,6 +15,7 @@ interface CourseCardProps {
   level: string;
   progress: number;
   className?: string;
+  style?: CSSProperties;
 }
 
 const CourseCard = ({
@@ -27,6 +28,7 @@ const CourseCard = ({
   level,
   progress,
   className,
+  style,
 }: CourseCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -37,6 +39,7 @@ const CourseCard = ({
         "group block rounded-xl overflow-hidden bg-card border border-border transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:border-primary/20",
         className
       )}
+      style={style}
     >
       <div className="relative h-48 overflow-hidden">
         <img
