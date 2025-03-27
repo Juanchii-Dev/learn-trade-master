@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getCourseById, getLessonById, markLessonAsCompleted } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import ProgressBar from '@/components/ProgressBar';
-import { ArrowDown, ArrowUp, Check, ChartLine, Play, Video } from 'lucide-react';
+import { ArrowDown, ArrowUp, Check, ChartLine, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const LessonView = () => {
@@ -78,14 +78,12 @@ const LessonView = () => {
   
   const getLessonIcon = (type: string) => {
     switch (type) {
-      case 'video':
-        return <Video className="h-5 w-5" />;
+      case 'reading':
+        return <BookOpen className="h-5 w-5" />;
       case 'interactive':
         return <ChartLine className="h-5 w-5" />;
-      case 'reading':
-        return <ChartLine className="h-5 w-5" />;
       default:
-        return <Play className="h-5 w-5" />;
+        return <BookOpen className="h-5 w-5" />;
     }
   };
   
@@ -146,95 +144,84 @@ const LessonView = () => {
                   </div>
                 </div>
                 
-                {lesson.type === 'video' && lesson.videoUrl && (
-                  <div className="rounded-lg overflow-hidden bg-muted aspect-video mb-8 border border-border">
-                    {/* In a real app, this would be a video player */}
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center mx-auto shadow-lg cursor-pointer hover:bg-primary transition-colors">
-                          <Play className="h-8 w-8 text-white ml-1" />
-                        </div>
-                        <p className="mt-4 text-muted-foreground">
-                          Video demostrativo de la lección
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                {lesson.type === 'interactive' && (
-                  <div className="rounded-lg overflow-hidden bg-muted/50 p-6 mb-8 border border-border">
-                    <h3 className="text-xl font-semibold mb-4">Ejercicio Interactivo</h3>
-                    <p className="text-muted-foreground mb-6">
-                      Completa este ejercicio práctico para reforzar tu aprendizaje.
-                    </p>
-                    
-                    <div className="bg-card p-6 rounded-lg border border-border mb-6">
-                      <p className="font-medium mb-2">Instrucciones:</p>
-                      <p className="text-muted-foreground">
-                        Analiza el siguiente gráfico y responde las preguntas a continuación.
-                      </p>
-                      
-                      <div className="my-6 bg-muted h-64 rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">
-                          [Gráfico interactivo]
-                        </p>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <div>
-                          <p className="font-medium mb-2">¿Qué tipo de patrón se observa en el gráfico?</p>
-                          <div className="space-y-2">
-                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
-                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
-                              <span>Doble techo</span>
-                            </label>
-                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
-                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
-                              <span>Hombro-cabeza-hombro</span>
-                            </label>
-                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
-                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
-                              <span>Canal ascendente</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                <div className="prose prose-sm max-w-none">
-                  <p className="text-muted-foreground mb-4">
+                <div className="prose prose-lg max-w-none text-foreground">
+                  <p className="text-lg mb-6 leading-relaxed">
                     {lesson.content || 'Contenido de la lección...'}
                   </p>
                   
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-lg mb-6 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus magna at eros vehicula, sit amet rhoncus magna tempus. Proin nec odio vel urna iaculis iaculis. Nulla facilisi. Maecenas eget iaculis leo, a bibendum ipsum.
                   </p>
                   
                   <h3 className="text-xl font-semibold mt-8 mb-4">Puntos clave</h3>
                   
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2 mt-0.5">
+                  <ul className="space-y-4 mb-6 list-none pl-0">
+                    <li className="flex items-start bg-secondary/20 p-4 rounded-lg">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                         <Check className="h-4 w-4 text-primary" />
                       </div>
-                      <span>Entiende los conceptos fundamentales del trading</span>
+                      <span className="text-base">Entiende los conceptos fundamentales del trading</span>
                     </li>
-                    <li className="flex items-start">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2 mt-0.5">
+                    <li className="flex items-start bg-secondary/20 p-4 rounded-lg">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                         <Check className="h-4 w-4 text-primary" />
                       </div>
-                      <span>Aprende a analizar tendencias y patrones</span>
+                      <span className="text-base">Aprende a analizar tendencias y patrones</span>
                     </li>
-                    <li className="flex items-start">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2 mt-0.5">
+                    <li className="flex items-start bg-secondary/20 p-4 rounded-lg">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                         <Check className="h-4 w-4 text-primary" />
                       </div>
-                      <span>Implementa estrategias efectivas basadas en análisis</span>
+                      <span className="text-base">Implementa estrategias efectivas basadas en análisis</span>
                     </li>
                   </ul>
+                  
+                  {lesson.type === 'interactive' && (
+                    <div className="my-8 bg-secondary/20 p-6 rounded-lg border border-border">
+                      <h3 className="text-xl font-semibold mb-4">Ejercicio Práctico</h3>
+                      <p className="text-base mb-6">
+                        Analiza el siguiente caso y responde las preguntas a continuación:
+                      </p>
+                      
+                      <div className="space-y-6">
+                        <div className="bg-card p-5 rounded-lg shadow-sm border border-border">
+                          <p className="font-medium mb-4">Imagina que estás analizando un gráfico de precios con las siguientes características:</p>
+                          <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                            <li>Una tendencia alcista que ha durado tres meses</li>
+                            <li>Volumen decreciente en las últimas dos semanas</li>
+                            <li>Formación de un patrón de doble techo</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <p className="font-medium mb-3">¿Qué tipo de señales observas en este escenario?</p>
+                          <div className="space-y-2">
+                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
+                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
+                              <span className="text-base">Señales de continuación de tendencia alcista</span>
+                            </label>
+                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
+                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
+                              <span className="text-base">Señales de posible reversión de tendencia</span>
+                            </label>
+                            <label className="flex items-center space-x-2 p-3 rounded-lg border border-border hover:bg-muted/30 cursor-pointer">
+                              <input type="radio" name="q1" className="h-5 w-5 text-primary" />
+                              <span className="text-base">Señales de consolidación lateral</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="bg-secondary/20 p-6 rounded-lg mt-8 border border-border">
+                    <h3 className="text-xl font-semibold mb-4">Resumen</h3>
+                    <p className="text-base leading-relaxed">
+                      En esta lección has aprendido conceptos fundamentales sobre análisis de mercado y estrategias de trading.
+                      Recuerda aplicar estos conocimientos de manera práctica y seguir estudiando el material complementario
+                      para fortalecer tu comprensión.
+                    </p>
+                  </div>
                 </div>
                 
                 {/* Lesson Navigation */}

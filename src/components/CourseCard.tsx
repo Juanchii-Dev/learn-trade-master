@@ -2,7 +2,7 @@
 import React, { useState, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
-import { ChartLine, Clock, ListOrdered } from 'lucide-react';
+import { ChartLine, Clock, ListOrdered, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CourseCardProps {
@@ -86,7 +86,7 @@ const CourseCard = ({
           </div>
           
           <div className="flex items-center text-primary">
-            <ChartLine className="h-4 w-4 mr-1" />
+            <BookOpen className="h-4 w-4 mr-1" />
             <span className="font-medium">{progress}% completado</span>
           </div>
         </div>
