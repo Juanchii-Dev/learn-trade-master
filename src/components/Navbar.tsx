@@ -24,40 +24,42 @@ const Navbar = () => {
   ];
 
   return (
-    <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out", 
-        scrolled ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
-      )}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-primary rounded-lg p-1.5">
-              <ChartBar className="h-5 w-5 text-white" />
-            </div>
-            <span className="font-display text-xl font-semibold text-foreground">Trade Master</span>
-          </Link>
-          
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                to={link.path}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  location.pathname === link.path ? "text-primary" : "text-muted-foreground"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+    <>
+      <header 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out", 
+          scrolled ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
+        )}
+      >
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="bg-primary rounded-lg p-1.5">
+                <ChartBar className="h-5 w-5 text-white" />
+              </div>
+              <span className="font-display text-xl font-semibold text-foreground">Trade Master</span>
+            </Link>
+            
+            <nav className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.path} 
+                  to={link.path}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-primary",
+                    location.pathname === link.path ? "text-primary" : "text-muted-foreground"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
-      </div>
+      </header>
       
-      {/* Mobile Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white dark:bg-gray-900 shadow-lg border-t border-border z-50">
+      {/* Mobile Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-lg border-t border-border">
         <div className="flex items-center justify-around">
           {navLinks.map((link) => (
             <Link 
@@ -76,7 +78,10 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-    </header>
+      
+      {/* Add bottom padding to main content to account for bottom navigation */}
+      <div className="pb-16 md:pb-0"></div>
+    </>
   );
 };
 

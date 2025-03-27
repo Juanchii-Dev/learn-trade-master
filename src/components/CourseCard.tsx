@@ -2,7 +2,7 @@
 import React, { useState, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
-import { ChartLine, Clock, ListOrdered, BookOpen } from 'lucide-react';
+import { BookOpen, Clock, ListOrdered } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CourseCardProps {
