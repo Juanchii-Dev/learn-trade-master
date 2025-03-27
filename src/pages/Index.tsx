@@ -156,8 +156,11 @@ const Index = () => {
                 duration={course.duration}
                 level={course.level}
                 progress={course.progress}
-                className="animate-scale-in opacity-0"
-                style={{ animationDelay: `${featuredCourses.indexOf(course) * 150}ms`, animationFillMode: 'forwards' }}
+                className={`animate-scale-in opacity-0`}
+                style={{ 
+                  animationDelay: `${featuredCourses.indexOf(course) * 150}ms`, 
+                  animationFillMode: 'forwards' 
+                } as React.CSSProperties}
               />
             ))}
           </div>

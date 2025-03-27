@@ -107,8 +107,8 @@ const Courses = () => {
                   duration={course.duration}
                   level={course.level}
                   progress={course.progress}
-                  className="animate-scale-in opacity-0"
-                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'forwards' }}
+                  className={`animate-scale-in opacity-0`}
+                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'forwards' } as React.CSSProperties}
                 />
               ))}
             </div>
